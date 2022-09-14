@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        body
+        {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+    </style>
+
+</head>
+<body>
+    @using (Html.BeginForm(null, "Home", FormMethod.Post))
+    {
+        if (Request.Cookies["Name"] != null)
+        {
+            @Request.Cookies["Name"].Value;
+            <hr />
+        }
+        <input type="submit" id="btnDelete" formaction="@Url.Action("DeleteCookie")" value="Remove Cookie" />
+    }
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert('@TempData["Message"]');
+            };
+        </script>
+    }
+</body>
+</html>
